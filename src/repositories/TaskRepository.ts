@@ -2,7 +2,7 @@ import { prisma } from '../config/prisma';
 
 interface CreateTaskData {
     title: string;
-    description?: string;
+    description?: string | undefined;
     priority: string;
     category: string;
 }
