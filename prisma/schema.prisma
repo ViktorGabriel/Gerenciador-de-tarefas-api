@@ -1,13 +1,23 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
+// Configuração do cliente Prisma (gerador de código)
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider = "prisma-client-js"
 }
 
+// Configuração da conexão com o banco de dados SQLite
 datasource db {
   provider = "sqlite"
+}
+
+// Modelo da tabela de Tarefas (Task)
+model Task {
+  id          String   @id @default(uuid()) // ID único usando UUID
+  title       String   // Título da tarefa
+  description String?  // Descrição opcional (o '?' permite valores nulos)
+  priority    String   // Prioridade: Alta, Média ou Baixa
+  category    String   // Categoria: Trabalho, Estudos, Lazer, etc.
+  completed   Boolean  @default(false) // Status da tarefa (padrão é não concluída)
+  createdAt   DateTime @default(now()) // Data de criação automática
+  updatedAt   DateTime @updatedAt      // Atualiza a data automaticamente quando houver alterações
+
+  @@map("tasks") // Altera o nome da tabela no banco real para ficar em minúsculo/plural
 }
