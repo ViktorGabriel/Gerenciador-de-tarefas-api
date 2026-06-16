@@ -1,0 +1,165 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API de Gerenciamento de Tarefas",
+        "description": "Documentação interativa do CRUD de tarefas desenvolvido em Node.js, TypeScript e Prisma.",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000",
+            "description": "Servidor Local"
+        }
+    ],
+    "paths": {
+        "/tasks": {
+            "get": {
+                "summary": "Lista todas as tarefas",
+                "tags": [
+                    "Tasks"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista retornada com sucesso."
+                    }
+                }
+            },
+            "post": {
+                "summary": "Cria uma nova tarefa",
+                "tags": [
+                    "Tasks"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "title",
+                                    "priority",
+                                    "category"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "Estudar Swagger"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Configurar documentação na API"
+                                    },
+                                    "priority": {
+                                        "type": "string",
+                                        "example": "Alta"
+                                    },
+                                    "category": {
+                                        "type": "string",
+                                        "example": "Estudos"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Tarefa criada com sucesso."
+                    },
+                    "400": {
+                        "description": "Erro de validação dos dados."
+                    }
+                }
+            }
+        },
+        "/tasks/{id}": {
+            "get": {
+                "summary": "Busca uma tarefa pelo ID",
+                "tags": [
+                    "Tasks"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tarefa encontrada."
+                    },
+                    "404": {
+                        "description": "Tarefa não encontrada."
+                    }
+                }
+            },
+            "put": {
+                "summary": "Atualiza uma tarefa pelo ID",
+                "tags": [
+                    "Tasks"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "completed": {
+                                        "type": "boolean",
+                                        "example": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Tarefa atualizada com sucesso."
+                    },
+                    "404": {
+                        "description": "Tarefa não encontrada."
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deleta uma tarefa pelo ID",
+                "tags": [
+                    "Tasks"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Tarefa deletada com sucesso."
+                    },
+                    "404": {
+                        "description": "Tarefa não encontrada."
+                    }
+                }
+            }
+        }
+    }
+}
