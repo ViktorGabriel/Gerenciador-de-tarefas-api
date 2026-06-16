@@ -1,8 +1,8 @@
 import { prisma } from '../config/prisma';
 
-interface CreateTaskData {
+export interface CreateTaskData {
     title: string;
-    description?: string | undefined;
+    description?: string | null;
     priority: string;
     category: string;
 }
@@ -26,6 +26,25 @@ export class TaskRepository {
             orderBy: {
                 createdAt: 'desc',// mais recentes primeiro
             },
+        });
+    }
+
+    async findById(id: string) {
+        return await prisma.task.findUnique({
+            where: { id },
+        });
+    }
+
+    async update(id: string, data: Partial<CreateTaskData & { completed: boolean }>) {
+        return await prisma.task.update({
+            where: { id },
+            data,
+        });
+    }
+
+    async delete(id: string) {
+        await prisma.task.delete({
+            where: { id },
         });
     }
 }

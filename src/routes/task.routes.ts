@@ -9,5 +9,8 @@ const taskController = new TaskController();
 // Usamos uma arrow function para garantir que o contexto do 'this' dentro do controller não se perca
 taskRoutes.post('/', (req, res) => taskController.create(req, res));
 taskRoutes.get('/', (req, res) => taskController.listAll(req, res));
+taskRoutes.get('/:id', (req, res) => taskController.show(req, res));
+taskRoutes.put('/:id', (req, res) => taskController.update(req, res));
+taskRoutes.delete('/:id', (req, res) => taskController.delete(req, res));
 
 export { taskRoutes };

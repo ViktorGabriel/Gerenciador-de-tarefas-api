@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import { taskRoutes } from './routes/task.routes';
-import { errorHandler } from './errors/AppErros';
+import { errorHandler } from './errors/AppError';
 
 const app = express();
 const PORT = 3000;
