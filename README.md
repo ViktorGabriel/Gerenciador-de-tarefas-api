@@ -1,4 +1,4 @@
-# 📋 Task Manager API
+# 📋 API Gerenciador de Tarefas
 
 Uma API REST completa, robusta e tipada para o gerenciamento de tarefas com foco em organização pessoal e produtividade. O projeto foi desenvolvido seguindo padrões rigorosos de arquitetura de software de mercado, garantindo separação de responsabilidades, validação estrita de dados e tratamento global de exceções.
 
