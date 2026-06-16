@@ -1,23 +1,22 @@
-// src/server.ts
 import express, { Request, Response } from 'express';
 import { taskRoutes } from './routes/task.routes';
+import { errorHandler } from './errors/AppErros';
 
 const app = express();
 const PORT = 3000;
 
 app.use(express.json());
 
-// Rota inicial de teste
+// Rota de teste
 app.get('/', (req: Request, res: Response) => {
-    res.status(200).json({
-        message: 'API de Gerenciamento de Tarefas rodando com sucesso!',
-        status: 'OK',
-        timestamp: new Date().toISOString()
-    });
+    res.status(200).json({ message: 'API rodando perfeitamente!' });
 });
 
-// Acopla as rotas de tarefas prefixadas com /tasks
+// Suas rotas
 app.use('/tasks', taskRoutes);
+
+// O Middleware de erro fica OBRIGATORIAMENTE no final, após as rotas
+app.use(errorHandler);
 
 app.listen(PORT, () => {
     console.log(`[server]: Servidor ativo na porta http://localhost:${PORT}`);
